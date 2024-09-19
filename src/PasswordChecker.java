@@ -57,13 +57,13 @@ public class PasswordChecker {
                 countSpecial++;
             }
 
-            // Early exit if all criteria are met
             if (countUpper >= 2 && countLower >= 2 && countDigit >= 2 && countSpecial >= 2) {
                 break;
             }
         }
-
-        if (countUpper >= 2 && countLower >= 2 && countDigit >= 2 && countSpecial >= 2) {
+        if(s.length() > 12 && countUpper >= 2 && countLower >= 2 && countDigit >= 2 && countSpecial >= 2){
+            System.out.println("Password Strength: Very Strong");
+        }else if (countUpper >= 2 && countLower >= 2 && countDigit >= 2 && countSpecial >= 2) {
             System.out.println("Password Strength: Strong");
         } else if (countUpper >= 1 && countLower >= 1 && countDigit >= 1 && countSpecial >= 1) {
             System.out.println("Password Strength: Medium");
@@ -71,8 +71,9 @@ public class PasswordChecker {
             System.out.println("Password Strength: Weak");
         }
 
-        if (countUpper < 2 || countLower < 2 || countDigit < 2 || countSpecial < 2) {
+        if (countUpper < 2 || countLower < 2 || countDigit < 2 || countSpecial < 2 || s.length() < 12) {
             System.out.println("Suggestions to improve your password:");
+            if(s.length() < 12) System.out.println("- Add more characters.(12-16 characters could be more secure)");
             if (countUpper < 2) System.out.println("- Add more uppercase letters.");
             if (countLower < 2) System.out.println("- Add more lowercase letters.");
             if (countDigit < 2) System.out.println("- Add more digits.");
@@ -81,8 +82,6 @@ public class PasswordChecker {
 
         if (commonPasswords.contains(s.toLowerCase())) {
             System.out.println("Password is too common.");
-        } else {
-            System.out.println("Password is OK.");
         }
     }
 
